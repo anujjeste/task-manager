@@ -1,0 +1,11 @@
+# Ignore build directories
+/target/
+/db_data/
+
+# Ignore system files
+*.log
+*.swp
+
+# Ignore sensitive information
+.env
+

@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    image: your-username/task-manager:1.0
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=youruser
+      - DB_PASSWORD=yourpassword
+    stdin_open: true  # Keeps stdin open
+    tty: true         # Allocates a pseudo-TTY
+
+  db:
+    image: mysql:8
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: taskmanager
+      MYSQL_USER: youruser
+      MYSQL_PASSWORD: yourpassword
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+
